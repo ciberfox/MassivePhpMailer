@@ -49,7 +49,7 @@ $mail->Port       = 587;                   // porta smtp
 $mail->Username   = "user";  // username
 $mail->Password   = "pass";            // password
 $mail->SetFrom('indirizzo.di@invio', 'Intestazione');
-$mail->Subject    = "Contratto E.JA Energia";
+$mail->Subject    = "oggetto";
 $mail->MsgHTML('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
  <head>
