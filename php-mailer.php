@@ -1,10 +1,4 @@
 <?php
-/*
-Autore: matteolocci at live dot it
-Semplice mailer massivo procedurale
-Supporto gmail e server con autenticazione ssl e TLS
-*/
-
 
 require 'phpmailer/PHPMailerAutoload.php';
 //connesione al server
@@ -16,7 +10,7 @@ $sql = "";
 $result=mysqli_query($connetto,$sql);
 //conto in stato 3 
 $conta = mysqli_num_rows($result); 
-echo $conta;
+
 //ciclo per invio basato su query
 if($conta >0) {
 $i = 0; 
@@ -81,7 +75,5 @@ $sqlu = "";
 $i++;
 }
 }
-else {
-	echo "echo for log";
-}
+
 ?>
