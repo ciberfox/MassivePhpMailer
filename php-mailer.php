@@ -4,11 +4,11 @@ require 'phpmailer/PHPMailerAutoload.php';
 //connesione al server
 $connetto = new mysqli('localhost', 'user', 'password', 'db');
 //query
-//cerco status 3 spedito
+//cerco status non inviato
 $sql = "";
 //eseguo query
 $result=mysqli_query($connetto,$sql);
-//conto in stato 3 
+//conto quante non inviate
 $conta = mysqli_num_rows($result); 
 
 //ciclo per invio basato su query
@@ -18,17 +18,8 @@ while($i < $conta){
 $sql = ""; //query dati
 $result=mysqli_query($connetto,$sql);
 $dati = mysqli_fetch_array($result);
-$pod = $dati['pod'];
 $mailsped= $dati['mail'];
-$path= "/file/pah/";
-
-//solo tablet
-$connetto_agente = new mysqli('localhost', 'user', 'password', 'db');
-$cod_agente = "";
-
-$mail_agente = mysqli_query($connetto_agente, $cod_agente);
-$dati_agente = mysqli_fetch_array($mail_agente);
-
+$path= "/file/path/"; // file
 
 //procedura invio
 $mail = new PHPMailer();
@@ -52,17 +43,17 @@ $mail->MsgHTML('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
-html daya
+Corpo HTML
 </body>
 </html>    ');
 $mail->AddAttachment($path);
 $address = $mailsped;
-$mail->AddBCC("ccmail1", $dati_agente['mail']); // solo tablet
-// $mail ->AddBCC("ccmail2"); // solo tiserbit
+//$mail->AddBCC("ccmail1", $dati_agente['mail']); // CC
+// $mail ->AddBCC("ccmail2"); // CC
 $mail->AddAddress($address, "Nome mittente");
 
 
-//aggiorno status su 4
+//aggiorno status inviato
 if(!$mail->Send()) {
  echo "Errore: " . $mail->ErrorInfo;
  } else {
